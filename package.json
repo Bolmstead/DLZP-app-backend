@@ -1,0 +1,28 @@
+{
+  "name": "dlzp-app-backend",
+  "version": "1.0.0",
+  "description": "Express backend for DLZP app with Anthropic integration",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@anthropic-ai/sdk": "^0.24.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "express",
+    "anthropic",
+    "backend",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC"
+}
