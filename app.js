@@ -1,5 +1,8 @@
 const express = require("express");
 const Anthropic = require("@anthropic-ai/sdk");
+require("dotenv").config();
+
+console.log("API KEY", process.env.ANTHROPIC_API_KEY);
 
 const app = express();
 const anthropic = new Anthropic({
@@ -30,9 +33,9 @@ app.post("/api/chat", async (req, res) => {
   try {
     console.log("Sending request to Claude with messages:", req.body.messages);
     const response = await anthropic.messages.create({
-      model: "claude-3-sonnet-20240229",
+      model: "claude-sonnet-4-20250514",
       messages: req.body.messages,
-      max_tokens: 1000,
+      max_tokens: 500,
     });
     console.log("Received response from Claude:", response);
     res.json(response);
