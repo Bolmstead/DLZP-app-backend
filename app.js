@@ -26,14 +26,18 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/chat", async (req, res) => {
+  console.log("Received chat request:", req.body);
   try {
+    console.log("Sending request to Claude with messages:", req.body.messages);
     const response = await anthropic.messages.create({
       model: "claude-3-sonnet-20240229",
       messages: req.body.messages,
       max_tokens: 1000,
     });
+    console.log("Received response from Claude:", response);
     res.json(response);
   } catch (error) {
+    console.error("Error in /api/chat endpoint:", error);
     res.status(500).json({ error: error.message });
   }
 });

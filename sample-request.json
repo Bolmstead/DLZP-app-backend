@@ -1,0 +1,8 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello Claude! Can you help me understand how Express.js middleware works?"
+    }
+  ]
+}
