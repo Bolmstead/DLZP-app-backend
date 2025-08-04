@@ -30,6 +30,7 @@ app.post("/api/chat", async (req, res) => {
   console.log("Received chat request:", req.body);
 
   const { system, messages } = req.body;
+  console.log("🚀 ~ system, messages:", system, messages);
 
   // Validate request body
   if (!req.body) {
@@ -44,15 +45,18 @@ app.post("/api/chat", async (req, res) => {
     return res.status(500).json({ error: "API key not configured" });
   }
 
+  const requestBody = {
+    model: "claude-sonnet-4-20250514",
+    messages,
+    system,
+    max_tokens: 500,
+  };
+  console.log("🚀 ~ requestBody:", requestBody);
+
   try {
-    const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
-      messages,
-      system,
-      max_tokens: 500,
-    });
+    const response = await anthropic.messages.create(requestBody);
     console.log("Received response from Claude:", response);
-    res.json(response);
+    res.json(response.content[0].text);
   } catch (error) {
     console.error("Error in /api/chat endpoint:", error);
     console.error("Error details:", {
