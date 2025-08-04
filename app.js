@@ -6,10 +6,7 @@ const app = express();
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY, // Secure on backend
 });
-console.log(
-  "🚀 ~ process.env.ANTHROPIC_API_KEY:",
-  process.env.ANTHROPIC_API_KEY
-);
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
