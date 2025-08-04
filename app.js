@@ -29,8 +29,10 @@ app.use((req, res, next) => {
 app.post("/api/chat", async (req, res) => {
   console.log("Received chat request:", req.body);
 
+  const { system, messages } = req.body;
+
   // Validate request body
-  if (!req.body || !Array.isArray(req.body)) {
+  if (!req.body) {
     return res
       .status(400)
       .json({ error: "Invalid request: messages array is required" });
@@ -45,7 +47,8 @@ app.post("/api/chat", async (req, res) => {
   try {
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-20250514",
-      messages: req.body,
+      messages,
+      system,
       max_tokens: 500,
     });
     console.log("Received response from Claude:", response);
