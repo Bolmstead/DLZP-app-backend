@@ -30,7 +30,7 @@ app.post("/api/chat", async (req, res) => {
   console.log("Received chat request:", req.body);
 
   // Validate request body
-  if (!req.body || !req.body.messages || !Array.isArray(req.body.messages)) {
+  if (!req.body || !Array.isArray(req.body.messages)) {
     return res
       .status(400)
       .json({ error: "Invalid request: messages array is required" });
