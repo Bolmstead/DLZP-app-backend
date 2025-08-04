@@ -31,10 +31,9 @@ app.use((req, res, next) => {
 app.post("/api/chat", async (req, res) => {
   console.log("Received chat request:", req.body);
   try {
-    console.log("Sending request to Claude with messages:", req.body.messages);
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-20250514",
-      messages: req.body.messages,
+      messages: req.body,
       max_tokens: 500,
     });
     console.log("Received response from Claude:", response);
